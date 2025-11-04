@@ -1,6 +1,8 @@
 [build]
+  base = "newspaper-db"
+  publish = ".next"
+  
   command = "npm run build"
-  publish = "newspaper-db/.next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
