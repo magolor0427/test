@@ -3,13 +3,17 @@
 import { useState, useMemo } from 'react';
 import AuthWrapper from './AuthWrapper';
 import Link from 'next/link';
-import articles from '../data/article.json'; 
+import articlesData from '../data/article.json'; 
 import ArticleTagging from './components/ArticleTagging';
 
 // (1) 記事データを取得する関数
 function getArticlesData() {
-  // 日付順にソート
-  const sortedArticles = articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const articlesArray = articlesData.articles; 
+  if (!Array.isArray(articlesArray)) {
+    console.error("記事データが配列ではありませんでした:", articlesData);
+    return [];
+  }
+  const sortedArticles = articlesArray.sort((a, b) => new Date(b.date) - new Date(a.date));
   return sortedArticles;
 }
 

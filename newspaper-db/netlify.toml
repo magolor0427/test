@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = ".next" # Netlifyがビルド結果を探す場所
+
+git add .
+git commit -m "feat: Add Netlify Next.js plugin config for proper deployment"
+git push[[plugins]]
+  package = "@netlify/plugin-nextjs"
