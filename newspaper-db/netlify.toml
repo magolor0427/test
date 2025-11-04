@@ -1,8 +1,6 @@
 [build]
   command = "npm run build"
-  publish = ".next" # Netlifyがビルド結果を探す場所
+  publish = "newspaper-db/.next"
 
-git add .
-git commit -m "feat: Add Netlify Next.js plugin config for proper deployment"
-git push[[plugins]]
+[[plugins]]
   package = "@netlify/plugin-nextjs"
