@@ -137,7 +137,7 @@ const searchInputStyle = {
     flexGrow: 1,
     padding: '10px',
     borderRadius: '4px',
-    border: '1px solid #ccc'
+    border: '1px solid #100000ff'
 };
 
 const selectStyle = {

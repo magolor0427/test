@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMS 管理画面</title>
+
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    const config = {
+        backend: {
+            name: 'git-gateway',
+            branch: 'main', 
+            repo: 'magolor0427/test',
+            identity: 'https://aghs-news.netlify.app/.netlify/identity',
+        },
+        local_backend: true,
+        publish_mode: 'editorial_workflow',
+        media_folder: '/images',
+        public_folder: '/images',
+        collections: [
+            {
+                name: 'articles',
+                label: '学校新聞 記事',
+                folder: 'data',
+                identifier_field: 'title',
+                extension: 'json',
+                format: 'json',
+                files: [
+                    {
+                        file: 'data/articles.json',
+                        label: '記事データ全体 (articles.json)',
+                        name: 'articles_data',
+                        fields: [
+                            {
+                                name: 'articles',
+                                label: '記事リスト',
+                                widget: 'list',
+                                summary: '{{fields.title}} ({{fields.year}})',
+                                fields: [
+                                    { label: '記事ID (ユニークな数字)', name: 'id', widget: 'number', value_type: 'int', required: true },
+                                    { label: '記事タイトル', name: 'title', widget: 'string', required: true },
+                                    { label: '記事の年代', name: 'year', widget: 'number', value_type: 'int', required: true },
+                                    { label: '号数', name: 'issue', widget: 'string' },
+                                    { label: '発行日 (YYYY-MM-DD)', name: 'date', widget: 'date', required: true },
+                                    { label: '記事の抜粋', name: 'content_excerpt', widget: 'string', required: true },
+                                    { label: '記事の全文', name: 'content_full', widget: 'markdown', required: true },
+                                    { label: '固定タグ', name: 'tags', widget: 'list', field: { label: 'タグ名', name: 'tag_item', widget: 'string' } },
+                                ],
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
+    };
+    
+    // CMSを初期化
+    CMS.init({ config });
+  </script>
+</head>
+<body>
+</body>
+</html>
