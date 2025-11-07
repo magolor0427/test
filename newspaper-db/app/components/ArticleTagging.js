@@ -86,7 +86,7 @@ export default function ArticleTagging({ articleId }) {
 
     return (
         <div style={taggingContainerStyle}>
-            <h3>💬 閲覧者による追加タグ</h3>
+            <h3 style={headerStyle}>💬 閲覧者による追加タグ</h3>
             {loading ? (
                 <p>読み込み中...</p>
             ) : (
@@ -141,7 +141,7 @@ const existingTagsStyle = {
 
 const viewerTagStyle = {
     display: 'inline-block',
-    background: '#e0f7fa', // 明るい青緑
+    background: '#e0f7fa',
     color: '#006064',
     padding: '4px 10px',
     marginRight: '8px',
@@ -160,7 +160,8 @@ const tagInputStyle = {
     flexGrow: 1,
     padding: '8px',
     borderRadius: '4px',
-    border: '1px solid #ccc'
+    border: '1px solid #ccc',
+    color: '#000'
 };
 
 const tagButtonStyle = {
@@ -172,3 +173,10 @@ const tagButtonStyle = {
     cursor: 'pointer',
     opacity: '0.9'
 };
+
+const headerStyle = {
+    color: '#000',
+    marginBottom: '10px'
+};
+
+

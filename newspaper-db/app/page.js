@@ -101,7 +101,7 @@ export default function Home() {
                                     </Link>
                                 </div>
                                 <p style={{ margin: '5px 0', color: '#666' }}>
-                                    **年代:** {article.year}年 / **号数:** {article.issue}号 ({article.date})
+                                    年代: {article.year}年 / 号数: {article.issue}号 ({article.date})
                                 </p>
                                 <p style={{ margin: '5px 0' }}>
                                     {article.content_excerpt}
@@ -130,7 +130,8 @@ const filterContainerStyle = {
     padding: '15px',
     backgroundColor: '#f9f9f9',
     borderRadius: '8px',
-    border: '1px solid #eee'
+    border: '1px solid #eee',
+    color: '#000'
 };
 
 const searchInputStyle = {
