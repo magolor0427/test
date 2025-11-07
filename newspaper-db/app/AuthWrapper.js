@@ -46,16 +46,48 @@ export default function AuthWrapper({ children }) {
         }
     };
 
-    // 認証が完了したら、子コンポーネント（Homeコンポーネント）をレンダリング
+    // ログアウト処理
+    const handleLogout = () => {
+        // ローカルストレージから認証情報を削除
+        localStorage.removeItem('newspaper_password');
+        localStorage.removeItem('newspaper_auth_level');
+        
+        // 状態をリセットして未認証に戻す
+        setAuthStatus(AUTH_STATUS.NONE);
+        setPassword('');
+        setError('');
+    };
+
     if (authStatus !== AUTH_STATUS.NONE) {
-        // childrenに認証レベルとステータスを渡す
         return (
             <>
-                {/* ログアウトボタンなど、認証後のUI要素をここに追加できます */}
-                {children} 
-                <p style={{textAlign: 'center', fontSize: '0.8em', color: '#888'}}>
-                    現在のアクセスレベル: **{authStatus.toUpperCase()}**
-                </p>
+                <div style={{ 
+                    display: 'flex', 
+                    justifyContent: 'flex-end', 
+                    alignItems: 'center', 
+                    padding: '10px 20px', 
+                    borderBottom: '1px solid #eee', 
+                    marginBottom: '10px' 
+                }}>
+                    <span style={{ marginRight: '15px', fontSize: '0.9em', color: '#555' }}>
+                        現在のレベル: **{authStatus.toUpperCase()}**
+                    </span>
+                    <button 
+                        onClick={handleLogout}
+                        style={{
+                            padding: '8px 15px',
+                            backgroundColor: '#e74c3c',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontSize: '0.9em'
+                        }}
+                    >
+                        ログアウト
+                    </button>
+                </div>
+                {children}
             </>
         );
     }
