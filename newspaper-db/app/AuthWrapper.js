@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import { checkAuthLevel } from '../utils/auth';
 
-// 認証状態の定義
+// 認証状態
 const AUTH_STATUS = {
     NONE: 'none',   // 未認証
     VIEW: 'view',   // 閲覧可能
@@ -12,12 +12,11 @@ const AUTH_STATUS = {
 };
 
 export default function AuthWrapper({ children }) {
-    // 認証状態と、認証レベル（VIEW or EDIT）を管理
+    // 認証状態と、認証レベルを管理
     const [authStatus, setAuthStatus] = useState(AUTH_STATUS.NONE);
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    // 初回ロード時にLocalStorageから以前の認証状態を復元 (利便性のため)
     useEffect(() => {
         const storedPassword = localStorage.getItem('newspaper_password');
         if (storedPassword) {
@@ -70,7 +69,7 @@ export default function AuthWrapper({ children }) {
                     marginBottom: '10px' 
                 }}>
                     <span style={{ marginRight: '15px', fontSize: '0.9em', color: '#555' }}>
-                        現在のレベル: **{authStatus.toUpperCase()}**
+                        現在のレベル: {authStatus.toUpperCase()}
                     </span>
                     <button 
                         onClick={handleLogout}

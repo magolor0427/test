@@ -6,7 +6,6 @@ import Link from 'next/link';
 import articlesData from '../data/article.json'; 
 import ArticleTagging from './components/ArticleTagging';
 
-// (1) 記事データを取得する関数
 function getArticlesData() {
     const articlesArray = articlesData.articles; 
   if (!Array.isArray(articlesArray)) {
@@ -17,19 +16,16 @@ function getArticlesData() {
   return sortedArticles;
 }
 
-// (2) 記事一覧のメインコンポーネント (app/page.js)
 export default function Home() {
     const allArticles = getArticlesData();
 
-    // ★ 検索機能のための状態管理を追加
     const [searchTerm, setSearchTerm] = useState('');
     const [filterYear, setFilterYear] = useState('');
 
-    // ★ 検索・フィルタリングロジック
     const filteredArticles = useMemo(() => {
         let currentArticles = allArticles;
 
-        // 1. 検索ワードによるフィルタリング
+        // 検索ワードによるフィルタリング
         if (searchTerm) {
             const lowerCaseSearch = searchTerm.toLowerCase();
             currentArticles = currentArticles.filter(article => 
@@ -39,7 +35,7 @@ export default function Home() {
             );
         }
 
-        // 2. 年代によるフィルタリング
+        // 年代によるフィルタリング
         if (filterYear) {
             currentArticles = currentArticles.filter(article => 
                 String(article.year) === filterYear
@@ -101,7 +97,7 @@ export default function Home() {
                                     </Link>
                                 </div>
                                 <p style={{ margin: '5px 0', color: '#666' }}>
-                                    年代: {article.year}年 / 号数: {article.issue}号 ({article.date})
+                                    号数: {article.id} / 出版日: {article.date}
                                 </p>
                                 <p style={{ margin: '5px 0' }}>
                                     {article.content_excerpt}
